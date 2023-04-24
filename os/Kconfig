@@ -1,0 +1,90 @@
+menu "Host User"
+    config USER
+        string "Username"
+        default "yoctouser"
+    config WORKDIR
+        string "User's Home Directory"
+        default "/home/yoctouser"
+    config CMD
+        string "User shell (most often /bin/bash)"
+        default "/bin/bash"
+endmenu
+
+menu "Host OS"
+
+    choice OS
+        prompt "Host OS"
+        default DEBIAN
+        config DEBIAN
+            bool "Debian"
+        config CENTOS
+            bool "Centos"
+        config FEDORA
+            bool "Fedora"
+        config UBUNTU
+            bool "Ubuntu"
+    endchoice
+
+    menu "Debian Version"
+    visible if DEBIAN
+        choice DEBIAN_VERSION
+            prompt "Debian Version"
+            default DEBIAN_11
+            config DEBIAN_11
+                bool "Debian 11"
+            config DEBIAN_10
+                bool "Debian 10"
+            config DEBIAN_9
+                bool "Debian 9"
+        endchoice
+    endmenu
+
+    menu "Ubuntu Version"
+    visible if UBUNTU
+        choice UBUNTU_VERSION
+            prompt "Ubuntu Version"
+            default UBUNTU_22
+            config UBUNTU_22
+                bool "Ubuntu 22"
+            config UBUNTU_20
+                bool "Ubuntu 20"
+            config UBUNTU_18
+                bool "Ubuntu 18"
+        endchoice
+    endmenu
+    
+    menu "Fedora Version"
+    visible if FEDORA
+        choice FEDORA_VERSION
+            prompt "Fedora Version"
+            default FEDORA_34
+            config FEDORA_34
+                bool "Fedora 34"
+            config FEDORA_35
+                bool "Fedora 35"
+            config FEDORA_36
+                bool "Fedora 36"
+        endchoice
+    endmenu
+
+    config HOST_OS_VERSION
+    string
+        default "11" if DEBIAN_11
+        default "10" if DEBIAN_10
+        default "9" if DEBIAN_9
+        default "22.04" if UBUNTU_22
+        default "20.04" if UBUNTU_20
+        default "18.04" if UBUNTU_18
+        default "centos7" if CENTOS
+        default "34" if FEDORA_34
+        default "35" if FEDORA_35
+        default "36" if FEDORA_36
+
+    config HOST_OS
+    string
+        default "debian" if DEBIAN
+        default "ubuntu" if UBUNTU
+        default "centos" if CENTOS
+        default "fedora" if FEDORA
+
+endmenu

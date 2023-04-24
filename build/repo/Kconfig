@@ -1,0 +1,11 @@
+menu "Repo Management"
+    config BUILDSYS_IN_CONTAINER
+        bool "Include the build system (poky) on the container"
+        default n
+
+    config REPO_MANAGER_SCRIPT
+        string 
+        prompt "Repository Management Script"
+        default "git-example.docker"
+        depends on BUILDSYS_IN_CONTAINER
+endmenu

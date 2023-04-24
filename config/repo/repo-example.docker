@@ -1,0 +1,1 @@
+RUN repo init -u https://git.toradex.com/toradex-manifest.git -b dunfell-5.x.y -m tdxref/default.xml

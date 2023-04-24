@@ -1,0 +1,35 @@
+crops-generator
+---------------
+crops-generator is a Kconfig and python3 Kconfiglib tool to make building off of
+CROPS easier. Because it's Kconfig based, extending it is trivial.
+
+How to use
+-----------
+# Create a .config
+config-mconf ./Kconfig
+# Generate the Dockerfile
+./crops_generator.py .config <containername>
+DOCKER_BUILDKIT=1 docker build <containername>
+
+Directories
+-----------
+.
+├── build - KConfig specific to yoctoproject build
+│   ├── repo - KConfig specific to build setup
+│   └── tc - KConfig specific to external toolchains
+├── config - config directory
+│   ├── entrypoints NN_<filename>.<ext> of entrypoints.
+│   ├── envs - Files named after the envvar. Contents of file are what we set envar to
+│   ├── pkgs - packages.<osname>-<osversion> Dockerfile fragments to modify what is installed in container
+│   └── repo - Dockerfile fragments for including buildsystem
+├── container - KConfig to override things like Registry URI/namespace for crops containers
+├── os - base host OS
+└── prepackaged_configs - Eventually for example .configs
+
+TODO
+----
+- Not happy about crops-generator. Could be a lot more modular
+- Add some good external-tc examples
+- Add explaination on why we don't mod local.conf (USE TEMPLATES!!!)
+- Better docs
+

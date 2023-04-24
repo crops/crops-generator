@@ -1,0 +1,8 @@
+mainmenu "CROPS Configuration"
+
+source "os/Kconfig"
+source "build/Kconfig"
+source "container/Kconfig"
+
+
+

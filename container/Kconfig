@@ -1,0 +1,27 @@
+menu "Docker"
+    config REGISTRY_URI
+    string "Docker Registry URI"
+        default "registry.hub.docker.com"
+
+    config REGISTRY_PORT
+    string "Docker Registry Port"
+        default ""
+
+    config REGISTRY_NAMESPACE
+    string "Docker Registry Namespace"
+        default "crops/poky"
+    menu "Directory Configuration"
+        config ENTRYPOINT_DIR
+            string "Directory within this directory we store entrypoint scripts"
+            default "config/entrypoints"
+        config ENVS_DIR
+            string "Directory within this directory we store env files"
+            default "config/envs"
+        config PACKAGES_PATH
+            string "Path within this directory we store the packages file"
+            default "config/pkgs"
+        config REPO_INSTALL_PATH
+            string "Path within this directory we store the packages file"
+            default "config/repo"
+    endmenu
+endmenu

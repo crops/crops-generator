@@ -1,0 +1,8 @@
+RUN git clone --depth=1 --recurse-submodules --remote-submodules git://git.yoctoproject.org/poky && \
+    cd poky && \
+    git clone --depth=1  --recurse-submodules --remote-submodules https://gitlab.baylibre.com/pidge/meta-baylibre-core.git && \
+    git clone --depth=1  --recurse-submodules --remote-submodules git://git.yoctoproject.org/meta-arm && \
+    TEMPLATECONF=./meta-baylibre-core/conf/templates/poky-template.conf . ./oe-init-build-env build-baylibre && \
+    bitbake-layers add-layer ../meta-arm/meta-arm-toolchain && \
+    bitbake-layers add-layer ../meta-arm/meta-arm
+

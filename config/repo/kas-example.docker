@@ -1,0 +1,22 @@
+RUN git clone https://github.com/siemens/kas.git && \
+    pip3 install distro jsonschema kconfiglib PyYAML && \
+    cd kas && \
+    sudo pip3 install . && \
+    cd .. && \
+    mkdir poky && \
+    cd poky && \
+    echo "header: \
+  version: 11 \
+\
+target: zlib-native \
+\
+repos: \
+  poky: \
+    url: https://git.yoctoproject.org/poky.git \
+    refspec: 387ab5f18b17c3af3e9e30dc58584641a70f359f \
+    layers: \
+      meta: \
+      meta-poky: \" >> poky-kas.yml && \
+    
+    
+    

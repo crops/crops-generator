@@ -1,0 +1,5 @@
+RUN dnf -y install \
+    git \
+    vim \
+    tree \
+    python3-pip && dnf -y clean all
