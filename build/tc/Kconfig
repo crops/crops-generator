@@ -1,22 +1,11 @@
 menu "External Toolchain"
     config USE_EXTERNAL_TC
         bool "Use External Toolchain"
-    config EXTERNAL_TOOLCHAIN
-        string "Location of EXTERNAL_TOOLCHAIN on container"
-        default "/opt/arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-elf"
+        default n
+
+    config TC_MANAGER_SCRIPT
+        string 
+        prompt "Toolchain Docker Fragment"
+        default "toolchain.docker"
         depends on USE_EXTERNAL_TC
-    config COPY_EXTERNAL_TOOLCHAIN
-        string "Docker COPY Line needed to install EXTERNAL_TOOLCHAIN to container"
-        default "arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-elf.tar.xz /tmp"
-        depends on USE_EXTERNAL_TC
-    config RUN_EXTERNAL_TOOLCHAIN
-        string "Docker RUN Line needed to install EXTERNAL_TOOLCHAIN to container"
-        default "tar xvf /tmp/arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-elf.tar.xz -C /opt; rm -rf /tmp/arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-elf.tar.xz"
-        depends on USE_EXTERNAL_TC
-    config USE_EXTERNAL_TC_DL
-        bool "Download External Toolchain"
-    config DL_EXTERNAL_TOOLCHAIN
-        string "Wget URI of external toolchain"
-        default "https://developer.arm.com/-/media/Files/downloads/gnu/12.2.rel1/binrel/arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-elf.tar.xz"
-        depends on USE_EXTERNAL_TC_DL
 endmenu

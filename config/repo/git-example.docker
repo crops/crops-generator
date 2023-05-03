@@ -1,3 +1,6 @@
+# You really want to keep this to a single RUN statement. Each additional RUN adds another layer to your
+# container.
+
 RUN git clone --depth=1 --recurse-submodules --remote-submodules git://git.yoctoproject.org/poky && \
     cd poky && \
     git clone --depth=1  --recurse-submodules --remote-submodules https://gitlab.baylibre.com/pidge/meta-baylibre-core.git && \
