@@ -8,27 +8,28 @@ How to use
 # Create a .config
 config-mconf ./Kconfig
 # Generate the Dockerfile
-./crops_generator.py .config <containername>
-DOCKER_BUILDKIT=1 docker build <containername>
+./crops_generator.py --kconf .config --docker <containercontext>
+DOCKER_BUILDKIT=1 docker build <containercontext>
 
 Directories
 -----------
-.
+
 ├── build - KConfig specific to yoctoproject build
 │   ├── repo - KConfig specific to build setup
 │   └── tc - KConfig specific to external toolchains
 ├── config - config directory
 │   ├── entrypoints NN_<filename>.<ext> of entrypoints.
-│   ├── envs - Files named after the envvar. Contents of file are what we set envar to
+│   ├── envs - envs.<osname>-<osversion> Dockerfile fragments to add ENV to Dockerfile
 │   ├── pkgs - packages.<osname>-<osversion> Dockerfile fragments to modify what is installed in container
 │   └── repo - Dockerfile fragments for including buildsystem
+│   └── tc - toolchain.docker Dockerfile fragments for including external toolchain
 ├── container - KConfig to override things like Registry URI/namespace for crops containers
-├── os - base host OS
+├── lib - crops libraries
+├── os - KConfig for base host OS
 └── prepackaged_configs - Eventually for example .configs
 
 TODO
 ----
-- Not happy about crops-generator. Could be a lot more modular
 - Add some good external-tc examples
 - Add explaination on why we don't mod local.conf (USE TEMPLATES!!!)
 - Better docs
