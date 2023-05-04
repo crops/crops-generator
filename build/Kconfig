@@ -65,7 +65,6 @@ endmenu
 
 source "build/tc/Kconfig"
 source "build/repo/Kconfig"
-
 endmenu
 
 

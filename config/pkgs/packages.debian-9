@@ -1,7 +1,0 @@
-# Be smart here. SINGLE RUN!!! Don't add additional RUNs for each apt-get install
-# as that just makes more layers within the container.
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    git \
-    vim \
-    tree \
-    python3-pip && apt-get clean

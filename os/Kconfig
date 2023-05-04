@@ -34,8 +34,6 @@ menu "Host OS"
                 bool "Debian 11"
             config DEBIAN_10
                 bool "Debian 10"
-            config DEBIAN_9
-                bool "Debian 9"
         endchoice
     endmenu
 
@@ -57,11 +55,7 @@ menu "Host OS"
     visible if FEDORA
         choice FEDORA_VERSION
             prompt "Fedora Version"
-            default FEDORA_34
-            config FEDORA_34
-                bool "Fedora 34"
-            config FEDORA_35
-                bool "Fedora 35"
+            default FEDORA_36
             config FEDORA_36
                 bool "Fedora 36"
         endchoice
@@ -71,13 +65,10 @@ menu "Host OS"
     string
         default "11" if DEBIAN_11
         default "10" if DEBIAN_10
-        default "9" if DEBIAN_9
         default "22.04" if UBUNTU_22
         default "20.04" if UBUNTU_20
         default "18.04" if UBUNTU_18
         default "centos7" if CENTOS
-        default "34" if FEDORA_34
-        default "35" if FEDORA_35
         default "36" if FEDORA_36
 
     config HOST_OS
