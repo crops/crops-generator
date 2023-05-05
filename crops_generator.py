@@ -39,6 +39,7 @@ if __name__ == "__main__":
     crps.MakeDockerDir()
     crps.SetUseradd()
     crps.SetHostOS()
+    crps.UnpackTC()
     crps.SetTC()
     crps.SetEnvs()
     crps.SetPackages()

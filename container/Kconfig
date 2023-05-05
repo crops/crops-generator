@@ -17,11 +17,14 @@ menu "Docker"
         config ENVS_DIR
             string "Directory within this directory we store env files"
             default "config/envs"
-        config PACKAGES_PATH
+        config PACKAGES_DIR
             string "Path within this directory we store the packages file"
             default "config/pkgs"
-        config REPO_INSTALL_PATH
+        config REPO_DIR
             string "Path within this directory we store the packages file"
             default "config/repo"
+        config TC_DIR
+            string "Path within this directory we store the packages file"
+            default "config/tc"
     endmenu
 endmenu

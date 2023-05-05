@@ -2,10 +2,14 @@ menu "External Toolchain"
     config USE_EXTERNAL_TC
         bool "Use External Toolchain"
         default n
-
     config TC_MANAGER_SCRIPT
         string 
         prompt "Toolchain Docker Fragment"
         default "toolchain.docker"
+        depends on USE_EXTERNAL_TC
+    config TC_RUN_SCRIPT
+        string 
+        prompt "Toolchain Setup Bash Script"
+        default "toolchain.run"
         depends on USE_EXTERNAL_TC
 endmenu
