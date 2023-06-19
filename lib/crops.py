@@ -48,13 +48,14 @@ class crops:
                   .config")
 
     def UnpackTC(self):
-        print("Downloading external toolchain, please wait...")
-        runtcscript=os.path.join(self.topdir,os.path.join(self.c_tc_dir,self.c_tc_run_script)) + " -d " + self.dockerctx
-        print(runtcscript)
-        p = subprocess.Popen(runtcscript, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        stdout, stderr = p.communicate()
-        
-        p_status = p.wait()
+        try:
+            runtcscript=os.path.join(self.topdir,os.path.join(self.c_tc_dir,self.c_tc_run_script)) + " -d " + self.dockerctx
+            print("Downloading external toolchain, please wait...")
+            p = subprocess.Popen(runtcscript, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            stdout, stderr = p.communicate()
+            p_status = p.wait()
+        except AttributeError:
+            pass
 
     def SetTC(self):
         self.d_tc_manager_script = ""
@@ -68,7 +69,7 @@ class crops:
     def SetRepo(self):
         self.d_repo_manager_script = ""
         try: 
-            repo_install=open(os.path.join(self.topdir,os.path.join(self.d_repo_dir,self.d_repo_manager_script)), "r")
+            repo_install=open(os.path.join(self.topdir,os.path.join(self.c_repo_dir,self.c_repo_manager_script)), "r")
             self.d_repo_manager_script = repo_install.read()
             repo_install.close()
         except AttributeError:
