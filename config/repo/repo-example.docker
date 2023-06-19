@@ -1,1 +1,8 @@
-RUN repo init -u https://git.toradex.com/toradex-manifest.git -b dunfell-5.x.y -m tdxref/default.xml
+RUN mkdir ~/bin && \
+    curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && \
+    chmod a+x ~/bin/repo && \
+    echo "PATH=${PATH}:~/bin" >> ~./bashrc  && \
+    mkdir ~/var-fslc-yocto && \
+    cd ~/var-fslc-yocto && \
+    repo init -u https://github.com/varigit/variscite-bsp-platform -b kirkstone -m default.xml && \
+    repo sync -j4
