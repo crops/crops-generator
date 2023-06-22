@@ -9,7 +9,8 @@ How to use
 config-mconf ./Kconfig
 # Generate the Dockerfile
 ./crops_generator.py --kconf .config --docker <containercontext>
-DOCKER_BUILDKIT=1 docker build <containercontext>
+DOCKER_BUILDKIT=1 docker build -t mycrops/<containercontext> <containercontext>
+docker run -it -v /home/$USER/workspace:/workspace -u 1000:1000 --entrypoint=/bin/bash mycrops/<containercontext>
 
 Directories
 -----------
