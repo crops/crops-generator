@@ -101,7 +101,7 @@ class crops:
         for fn in self.entrypointfiles:
             self.d_template += "COPY --chown={c_user}:{c_user} --chmod=755 {fn} /usr/local/bin/ \n".format(c_user=self.c_user, fn=fn)
             np_ep_files.append("/usr/local/bin/" + fn)
-        self.d_entrypoint = "ENTRYPOINT {np_ep_files} \n".format(np_ep_files=np_ep_files)
+        self.d_entrypoint = "ENTRYPOINT {np_ep_files} \n".format(np_ep_files=np_ep_files).replace("'", '"')
 
     def WriteDockerFile(self):
         f = open(os.path.join(self.dockerctx, "Dockerfile"), "w", encoding='utf-8')
