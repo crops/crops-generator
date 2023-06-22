@@ -1,4 +1,6 @@
 RUN dnf -y install \
+    iproute2 \
+    iputils-ping \
     git \
     vim \
     tree \

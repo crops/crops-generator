@@ -1,6 +1,8 @@
 # Be smart here. SINGLE RUN!!! Don't add additional RUNs for each apt-get install
 # as that just makes more layers within the container.
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    iproute2 \
+    iputils-ping \
     git \
     vim \
     tree \
