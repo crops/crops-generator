@@ -6,7 +6,7 @@ CROPS easier. Because it's Kconfig based, extending it is trivial.
 How to use
 -----------
 # Create a .config
-config-mconf ./Kconfig
+kconfig-mconf ./Kconfig
 # Generate the Dockerfile
 ./crops_generator.py --kconf .config --docker <containercontext>
 DOCKER_BUILDKIT=1 docker build -t mycrops/<containercontext> <containercontext>
