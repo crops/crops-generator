@@ -97,9 +97,10 @@ class crops:
     def SetTemplate(self):
         self.d_tempconf = "COPY --chown={c_user}:{c_user} --chmod=755 template.conf /usr/local/bin/ \n".format(c_user=self.c_user)
         self.d_template = "USER root \n"
+        self.d_template_entrypoints = ""
         np_ep_files = []
         for fn in self.entrypointfiles:
-            self.d_template += "COPY --chown={c_user}:{c_user} --chmod=755 {fn} /usr/local/bin/ \n".format(c_user=self.c_user, fn=fn)
+            self.d_template_entrypoints += "COPY --chown={c_user}:{c_user} --chmod=755 {fn} /usr/local/bin/ \n".format(c_user=self.c_user, fn=fn)
             np_ep_files.append("/usr/local/bin/" + fn)
         self.d_entrypoint = "ENTRYPOINT {np_ep_files} \n".format(np_ep_files=np_ep_files).replace("'", '"')
 
@@ -111,6 +112,7 @@ class crops:
         #USER root stage
 
         f.write(self.d_usermod + '\n\n')
+        f.write(self.d_template_entrypoints + '\n')
         f.write(self.d_tc_manager_script + '\n')
         f.write(self.d_packages_setup + '\n')
 
